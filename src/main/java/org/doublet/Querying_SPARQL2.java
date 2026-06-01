@@ -56,12 +56,22 @@ class Querying_SPARQL {
 
 				 */
 		//Query With full name of all people in the database
+				/*
 				"PREFIX vcard: <http://www.w3.org/2001/vcard-rdf/3.0#> " +
 				"SELECT ?x ?name " +
 				"WHERE { " +
 				"  ?x vcard:FN ?name . " +
 				"} " +
 				"ORDER BY ?name";
+				*/
+		//Query What is the given name of all the people in the knowledge base whose family name is Smith.
+			"PREFIX vcard: <http://www.w3.org/2001/vcard-rdf/3.0#> " +
+    		"SELECT ?givenName " +
+    		"WHERE { " +
+					"  ?person vcard:N ?name . " +
+    				"  ?name vcard:Family \"Smith\" . " +
+    				"  ?name vcard:Given ?givenName . " +
+    		"}";
 		Query query = QueryFactory.create(queryString);
 
 		// Execute the query and obtain results

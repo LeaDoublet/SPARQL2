@@ -65,13 +65,23 @@ class Querying_SPARQL {
 				"ORDER BY ?name";
 				*/
 		//Query What is the given name of all the people in the knowledge base whose family name is Smith.
-			"PREFIX vcard: <http://www.w3.org/2001/vcard-rdf/3.0#> " +
+			/*
+				"PREFIX vcard: <http://www.w3.org/2001/vcard-rdf/3.0#> " +
     		"SELECT ?givenName " +
     		"WHERE { " +
 					"  ?person vcard:N ?name . " +
     				"  ?name vcard:Family \"Smith\" . " +
     				"  ?name vcard:Given ?givenName . " +
     		"}";
+			 */
+		//Query Change the query just a little to return the anonymous node as well?
+				"PREFIX vcard: <http://www.w3.org/2001/vcard-rdf/3.0#> " +
+						"SELECT ?nameNode ?givenName " +
+						"WHERE { " +
+						"  ?person vcard:N ?nameNode . " +
+						"  ?nameNode vcard:Family \"Smith\" . " +
+						"  ?nameNode vcard:Given ?givenName . " +
+						"}";
 		Query query = QueryFactory.create(queryString);
 
 		// Execute the query and obtain results

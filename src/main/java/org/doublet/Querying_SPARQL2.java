@@ -87,7 +87,7 @@ class Querying_SPARQL {
 
 				 */
 		//Query Find the URI of all people in the knowledge base whose age is greater than or equals to 24 years old.
-				"PREFIX info: <http://somewhere/peopleInfo#> " +
+				/*"PREFIX info: <http://somewhere/peopleInfo#> " +
 						"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> " +
 						"SELECT ?person " +
 						"WHERE { " +
@@ -95,6 +95,25 @@ class Querying_SPARQL {
 						"  FILTER(?age >= 24) " +
 						"}";
 
+				 */
+		// Query Get the full name of all people in our vCard2 knowledge base and also their age?
+				/*"PREFIX vCard: <http://www.w3.org/2001/vcard-rdf/3.0#> " +
+						"PREFIX info: <http://somewhere/peopleInfo#> " +
+						"SELECT ?person ?fullName ?age " +
+						"WHERE { " +
+						"  ?person vCard:FN ?fullName . " +
+						"  ?person info:age ?age . " +
+						"}";
+						
+				 */
+		//Query with age as OPTIONAL to have Sarah Jones and Matt Jones
+		"PREFIX vCard: <http://www.w3.org/2001/vcard-rdf/3.0#> " +
+				"PREFIX info: <http://somewhere/peopleInfo#> " +
+				"SELECT ?person ?fullName ?age " +
+				"WHERE { " +
+				"  ?person vCard:FN ?fullName . " +
+				"  OPTIONAL { ?person info:age ?age . } " +
+				"}";
 		Query query = QueryFactory.create(queryString);
 
 		// Execute the query and obtain results
